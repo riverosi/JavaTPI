@@ -14,6 +14,6 @@ The JDK includes tools useful for developing and testing programs written in the
 
 * **Riveros Ignacio** - [riverosi](https://github.com/riverosi)
 
-## Licencia 📄
+## License 📄
 
 This project is under the License of LESSER GENERAL PUBLIC LICENSE. See the file [LICENSE.md](LICENSE.md) for more details.
