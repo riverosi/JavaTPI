@@ -1,35 +1,33 @@
 package ar.com.gugler.sgc.modelo;
-
+/**
+ * Main Class
+ * @author Riveros Ignacio
+ * @version 1.0
+ */
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		var alumno1 = new Alumno("39539138", "Riveros", "Ignacio");
+		var alumno1 = new Alumno("39539138", "Anakin", "Skywalker");
 		alumno1.setLegajo("12346");
-		var alumno2 = new Alumno("39539138", "Riveros", "Ignacio");
+		var alumno2 = new Alumno("39123456", "Luke", "Skywalker");
 		alumno2.setLegajo("12345");
-		var profesor1 = new Profesor("39539138", "Pita", "Gustavo de Dios");
+		var profesor1 = new Profesor("455564322", "Han", "Solo");
 		profesor1.setCuil("206584001");
 		
 		
-		if (alumno1.equals(alumno2)) {
-			System.out.println(alumno1.mostrarInformacion());
-		}
-		else {
-			System.out.println("los alumnos no son iguales");
-		}
-		
-		
-		System.out.println(profesor1.mostrarInformacion());
-		System.out.println(profesor1.toString());
-		
+		Universidad.mostrarDatos(alumno1);
+		Universidad.mostrarDatos(alumno2);
+		Universidad.mostrarDatos(profesor1);
 		
 		var cursoJava = new Curso(123);
 		
 		cursoJava.agregarAlumno(alumno1);
 		cursoJava.agregarAlumno(alumno2);
-		cursoJava.eliminarAlumno(alumno2);
+		cursoJava.setProfesor(profesor1);
 		
+		
+		System.out.print("La cantidad de alumnos en el Curso es: ");
 		System.out.println( cursoJava.getAlumnos().size() );		
 		
 	}

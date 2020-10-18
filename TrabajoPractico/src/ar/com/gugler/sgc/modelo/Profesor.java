@@ -12,10 +12,7 @@ public class Profesor extends Persona {
 	/**
 	 * Constructors
 	 */
-	public Profesor() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	public Profesor(String numeroDocumento, String apellido, String nombres) {
 		super(numeroDocumento, apellido, nombres);
 		// TODO Auto-generated constructor stub
@@ -46,8 +43,8 @@ public class Profesor extends Persona {
 	@Override
 	public String mostrarInformacion() {
 		// TODO Auto-generated method stub
-		return "Profesor [Nombre y apellido=" + this.getNombres().toUpperCase() + ", " + this.getApellido().toUpperCase() + 
-				" Cuil: "+ this.getCuil() + "]"; 
+		return "Profesor [Nombre y apellido= " + this.getNombres().toUpperCase() + " " + this.getApellido().toUpperCase() + 
+				", Cuil: "+ this.getCuil() + "]"; 
 	}
 
 	@Override

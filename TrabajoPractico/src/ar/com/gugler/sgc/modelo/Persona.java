@@ -17,9 +17,6 @@ public abstract class Persona {
 	/**
 	 * Constructors
 	 */
-	public Persona() {
-		super();
-	}
 	public Persona(String numeroDocumento, String apellido, String nombres) {
 		super();
 		this.numeroDocumento = numeroDocumento;

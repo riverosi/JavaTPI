@@ -23,6 +23,7 @@ public class Asignatura {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.profesor = profesor;
+		alumnos = new ArrayList<Alumno>();
 	}
 
 	/**
