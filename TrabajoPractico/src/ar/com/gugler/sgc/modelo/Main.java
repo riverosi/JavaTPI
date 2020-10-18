@@ -12,7 +12,7 @@ public class Main {
 		alumno1.setLegajo("12346");
 		var alumno2 = new Alumno("39123456", "Luke", "Skywalker");
 		alumno2.setLegajo("12345");
-		var profesor1 = new Profesor("455564322", "Han", "Solo");
+		var profesor1 = new Profesor("455564322", "Solo", "Han");
 		profesor1.setCuil("206584001");
 		
 		
