@@ -8,9 +8,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		var alumno1 = new Alumno("39539138", "Anakin", "Skywalker");
+		var alumno1 = new Alumno("39539138", "Skywalker", "Anakin");
 		alumno1.setLegajo("12346");
-		var alumno2 = new Alumno("39123456", "Luke", "Skywalker");
+		var alumno2 = new Alumno("39123456", "Skywalker", "Luke");
 		alumno2.setLegajo("12345");
 		var profesor1 = new Profesor("455564322", "Solo", "Han");
 		profesor1.setCuil("206584001");
@@ -25,7 +25,6 @@ public class Main {
 		cursoJava.agregarAlumno(alumno1);
 		cursoJava.agregarAlumno(alumno2);
 		cursoJava.setProfesor(profesor1);
-		
 		
 		System.out.print("La cantidad de alumnos en el Curso es: ");
 		System.out.println( cursoJava.getAlumnos().size() );		
