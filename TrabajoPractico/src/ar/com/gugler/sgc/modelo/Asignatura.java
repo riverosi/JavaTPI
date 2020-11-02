@@ -1,9 +1,9 @@
 package ar.com.gugler.sgc.modelo;
-
+import ar.com.gugler.dao.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Asignatura {
+public class Asignatura extends BaseModelo{
 	/**
 	 * Attributes
 	 */

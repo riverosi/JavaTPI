@@ -1,4 +1,8 @@
 package ar.com.gugler.sgc.modelo;
+
+import ar.com.gugler.dao.AlumnoDAO;
+
+
 /**
  * Main Class
  * @author Riveros Ignacio
@@ -27,7 +31,13 @@ public class Main {
 		cursoJava.setProfesor(profesor1);
 		
 		System.out.print("La cantidad de alumnos en el Curso es: ");
-		System.out.println( cursoJava.getAlumnos().size() );		
+		System.out.println( cursoJava.getAlumnos().size() );
+		
+		AlumnoDAO alumnosEjemplo = new AlumnoDAO();
+		
+		alumnosEjemplo.connect();
+		alumnosEjemplo.closeConnection();
+		
 		
 	}
 

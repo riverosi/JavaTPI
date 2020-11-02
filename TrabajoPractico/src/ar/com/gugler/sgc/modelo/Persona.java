@@ -2,7 +2,9 @@ package ar.com.gugler.sgc.modelo;
 
 import java.util.Date;
 
-public abstract class Persona {
+import ar.com.gugler.dao.BaseModelo;
+
+public abstract class Persona extends BaseModelo{
 	
 	/**
 	 * Attributes
