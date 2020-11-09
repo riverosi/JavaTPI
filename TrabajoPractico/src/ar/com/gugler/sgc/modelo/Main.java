@@ -1,5 +1,7 @@
 package ar.com.gugler.sgc.modelo;
 
+import java.sql.SQLException;
+
 import ar.com.gugler.dao.AlumnoDAO;
 
 
@@ -10,7 +12,7 @@ import ar.com.gugler.dao.AlumnoDAO;
  */
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		var alumno1 = new Alumno("39539138", "Skywalker", "Anakin");
 		alumno1.setLegajo("12346");
@@ -36,6 +38,7 @@ public class Main {
 		AlumnoDAO alumnosEjemplo = new AlumnoDAO();
 		
 		alumnosEjemplo.connect();
+		alumnosEjemplo.insert(alumno1);
 		alumnosEjemplo.closeConnection();
 		
 		
