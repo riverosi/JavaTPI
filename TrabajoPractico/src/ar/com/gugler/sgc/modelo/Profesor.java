@@ -18,6 +18,11 @@ public class Profesor extends Persona {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Profesor(String numeroDocumento, String apellido, String nombres, String cuil) {
+		super(numeroDocumento, apellido, nombres);
+		this.cuil = cuil;
+	}
+
 	/**
 	 * Getters and Setters
 	 */

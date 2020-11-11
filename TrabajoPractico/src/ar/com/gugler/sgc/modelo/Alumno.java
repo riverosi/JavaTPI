@@ -9,10 +9,13 @@ public class Alumno extends Persona {
 	/**
 	 * Constructors
 	 */
-	
 	public Alumno(String numeroDocumento, String apellido, String nombres) {
 		super(numeroDocumento, apellido, nombres);
 		// TODO Auto-generated constructor stub
+	}
+	public Alumno(String numeroDocumento, String apellido, String nombres, String legajo) {
+		super(numeroDocumento, apellido, nombres);
+		this.legajo = legajo;
 	}
 	/**
 	 * Getters and Setters

@@ -4,8 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 import ar.com.gugler.sgc.modelo.Alumno;
+
 
 public class AlumnoDAO extends BaseDAO<Alumno> {
 
@@ -13,16 +15,24 @@ public class AlumnoDAO extends BaseDAO<Alumno> {
 	public void insert(Alumno alumno) throws SQLException {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
-		String sqlInsert = "INSERT INTO `tp`.`alumnos` (`numeroDocumento`, `apellido`, `nombres`) VALUES (?,?,?);";
+		ResultSet res = null;
+		String sqlInsert = "INSERT INTO `tp`.`alumnos` (`numeroDocumento`, `nombres`, `apellido`, `legajo`) VALUES (?,?,?,?);";
 		try {
-			pstmt = con.prepareStatement(sqlInsert);
+			pstmt = con.prepareStatement(sqlInsert,Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1 , alumno.getNumeroDocumento());
-			pstmt.setString(2 , alumno.getApellido());
-			pstmt.setString(3 , alumno.getNombres());
+			pstmt.setString(2 , alumno.getNombres());
+			pstmt.setString(3 , alumno.getApellido());
+			pstmt.setString(4 , alumno.getLegajo());
 			pstmt.executeUpdate();
+			res = pstmt.getGeneratedKeys();
+			while (res.next()) {
+				alumno.setId(res.getLong(1));
+		      }
+			System.out.println("Successful data Insert.");
+			res.close();
 			pstmt.close();
 		} catch (SQLException e) {
-			System.out.println("Error insert Alumno");
+			System.out.println("Error insert Alumno data.");
 			e.printStackTrace();
 		} 		
 	}
@@ -30,24 +40,6 @@ public class AlumnoDAO extends BaseDAO<Alumno> {
 	@Override
 	public void delete(Alumno alumno) throws SQLException {
 		// TODO Auto-generated method stub
-		Statement stmt = null;
-		ResultSet rset = null;
-		/**
-		 * Buscamos si el alumno esta en la DB
-		 */
-		String sqlQuery = "SELECT * FROM Customers WHERE numeroDocumento = '" + alumno.getNumeroDocumento() + "';)";
-		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sqlQuery);
-			stmt.close();
-			rset.close();
-		} catch (SQLException e) {
-			System.out.println("Error selecting Alumno");
-			e.printStackTrace();
-		}
-		/**
-		 * Eliminamos al alumno por el id
-		 */
 		PreparedStatement pstmt = null;
 		String sqlDelete = "DELETE FROM `tp`.`alumnos` WHERE (`idAlumnos` = ?)";
 		try {
@@ -55,8 +47,9 @@ public class AlumnoDAO extends BaseDAO<Alumno> {
 			pstmt.setLong(1, alumno.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
+			System.out.println("Successful Deleting Alumno.");
 		} catch (SQLException e) {
-			System.out.println("Error delete Alumno");
+			System.err.println("Error Deleting Alumno.");
 			e.printStackTrace();
 		} 		
 	}
@@ -65,16 +58,20 @@ public class AlumnoDAO extends BaseDAO<Alumno> {
 	public void update(Alumno alumno) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
-		String sqlUpdate = "UPDATE `tp`.`alumnos` SET `numeroDocumento` = ? WHERE (`idAlumnos` = '2');";
+		String sqlUpdate = "UPDATE `tp`.`alumnos` SET `numeroDocumento` = ?, `nombres` = ?, `apellido` = ?, `legajo` = ?"
+				+ " WHERE (`idAlumnos` = ?);";
 		try {
 			pstmt = con.prepareStatement(sqlUpdate);
 			pstmt.setString(1 , alumno.getNumeroDocumento());
-			pstmt.setString(2, alumno.getApellido());
-			pstmt.setString(3, alumno.getNombres());
+			pstmt.setString(2 , alumno.getNombres());
+			pstmt.setString(3 , alumno.getApellido());
+			pstmt.setString(4 , alumno.getLegajo());
+			pstmt.setLong(5, alumno.getId());
 			pstmt.executeUpdate();
 			pstmt.close();
+			System.out.println("Successful Update of Alumno data.");
 		} catch (SQLException e) {
-			System.out.println("Error insert Alumno");
+			System.err.println("Error Updating Alumno");
 			e.printStackTrace();
 		}
 	}
@@ -82,8 +79,26 @@ public class AlumnoDAO extends BaseDAO<Alumno> {
 	@Override
 	public List<Alumno> getAll() throws SQLException {
 		// TODO Auto-generated method stub
-		
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		var listaAlumnos = new ArrayList<Alumno>();
+		String sqlGetAll = "SELECT * FROM tp.alumnos;";
+		try {
+			pstmt = con.prepareStatement(sqlGetAll);
+			res = pstmt.executeQuery();
+			while (res.next()) {
+				var auxAlumno = new Alumno(res.getString(2), res.getString(3), res.getString(4), res.getString(5));
+				auxAlumno.setId(res.getLong(1));
+				listaAlumnos.add(auxAlumno);
+		      }
+			System.out.println("Successful Get All Rows.");
+			res.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			System.out.println("Error Get All.");
+			e.printStackTrace();
+		} 	
+		return listaAlumnos;
 	}
 
 

@@ -1,6 +1,7 @@
 package ar.com.gugler.sgc.modelo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import ar.com.gugler.dao.AlumnoDAO;
 
@@ -14,13 +15,9 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		var alumno1 = new Alumno("39539138", "Skywalker", "Anakin");
-		alumno1.setLegajo("12346");
-		var alumno2 = new Alumno("39123456", "Skywalker", "Luke");
-		alumno2.setLegajo("12345");
-		var profesor1 = new Profesor("455564322", "Solo", "Han");
-		profesor1.setCuil("206584001");
-		
+		var alumno1 = new Alumno("39539138", "Skywalker", "Anakin", "12346");
+		var alumno2 = new Alumno("39123456", "Skywalker", "Luke", "12345");
+		var profesor1 = new Profesor("455564322", "Solo", "Han", "206584001");
 		
 		Universidad.mostrarDatos(alumno1);
 		Universidad.mostrarDatos(alumno2);
@@ -35,11 +32,20 @@ public class Main {
 		System.out.print("La cantidad de alumnos en el Curso es: ");
 		System.out.println( cursoJava.getAlumnos().size() );
 		
-		AlumnoDAO alumnosEjemplo = new AlumnoDAO();
+		AlumnoDAO alumnosDB = new AlumnoDAO();
 		
-		alumnosEjemplo.connect();
-		alumnosEjemplo.insert(alumno1);
-		alumnosEjemplo.closeConnection();
+		alumnosDB.connect();
+		//alumnosDB.insert(alumno1);
+		//alumno1.setApellido("changes");
+		//alumno1.setNombres("cambio");
+		//alumnosDB.update(alumno1);
+		//System.out.println(alumno1.getId());
+		//alumnosEjemplo.delete(alumno1);
+		var lista = alumnosDB.getAll();
+		for (Alumno alumno : lista) {
+			System.out.println(alumno.mostrarInformacion());
+		}
+		alumnosDB.closeConnection();
 		
 		
 	}

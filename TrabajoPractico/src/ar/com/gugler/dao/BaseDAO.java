@@ -22,16 +22,16 @@ public abstract class BaseDAO <T extends BaseModelo> {
 			
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection( URL , USER , PASSWORD );
-			System.out.println("Successful Connection. OK");
+			System.out.println("Successful Connection.");
 			
 		} catch (ClassNotFoundException e) {
 			
-			System.err.println("Error in Driver connection to data base");
+			System.err.println("Error in Driver connection to data base.");
 			e.printStackTrace();
 			
 		} catch (SQLException e) {
 			
-			System.err.println("Error in conection");
+			System.err.println("Error in conection.");
 			e.printStackTrace();
 			
 		}
@@ -45,12 +45,12 @@ public abstract class BaseDAO <T extends BaseModelo> {
 		try {
 			
 				con.close();
-				System.out.println("Successful Close Connection. OK");
+				System.out.println("Successful Disconnection.");
 				
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
-				System.err.println("Error clousing the conection for data base");
+				System.err.println("Error clousing the conection whit data base.");
 				
 			}
 	}
