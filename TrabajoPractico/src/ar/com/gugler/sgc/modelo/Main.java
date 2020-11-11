@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ar.com.gugler.dao.AlumnoDAO;
+import ar.com.gugler.dao.ProfesorDAO;
 
 
 /**
@@ -34,6 +35,7 @@ public class Main {
 		
 		AlumnoDAO alumnosDB = new AlumnoDAO();
 		
+		
 		alumnosDB.connect();
 		//alumnosDB.insert(alumno1);
 		//alumno1.setApellido("changes");
@@ -46,6 +48,13 @@ public class Main {
 			System.out.println(alumno.mostrarInformacion());
 		}
 		alumnosDB.closeConnection();
+		
+		
+		ProfesorDAO profesorDB = new ProfesorDAO();
+		
+		profesorDB.connect();
+		profesorDB.insert(profesor1);
+		profesorDB.closeConnection();
 		
 		
 	}
