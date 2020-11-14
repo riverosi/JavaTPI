@@ -18,7 +18,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		var alumno1 = new Alumno("39539138", "Skywalker", "Anakin", "12346");
 		var alumno2 = new Alumno("39123456", "Skywalker", "Luke", "12345");
-		var profesor1 = new Profesor("455564322", "Solo", "Han", "206584001");
+		var alumno3 = new Alumno("6665656", "C-3PO", "Robot", "123456");
+		
+		var profesor1 = new Profesor("4555643", "Solo", "Han", "206584001");
+		var profesor2 = new Profesor("455564322", "Kenobi", "Obi-Wan", "874001");
+		var profesor3 = new Profesor("44444", "Darth", "Vader", "12354");
+		
 		
 		Universidad.mostrarDatos(alumno1);
 		Universidad.mostrarDatos(alumno2);
@@ -28,6 +33,7 @@ public class Main {
 		
 		cursoJava.agregarAlumno(alumno1);
 		cursoJava.agregarAlumno(alumno2);
+		cursoJava.agregarAlumno(alumno3);
 		cursoJava.setProfesor(profesor1);
 		
 		System.out.print("La cantidad de alumnos en el Curso es: ");
@@ -37,7 +43,7 @@ public class Main {
 		
 		
 		alumnosDB.connect();
-		//alumnosDB.insert(alumno1);
+		//alumnosDB.insert(alumno3);
 		//alumno1.setApellido("changes");
 		//alumno1.setNombres("cambio");
 		//alumnosDB.update(alumno1);
@@ -47,13 +53,31 @@ public class Main {
 		for (Alumno alumno : lista) {
 			System.out.println(alumno.mostrarInformacion());
 		}
+		
+		alumnosDB.delete(lista.get(5));
+		
 		alumnosDB.closeConnection();
 		
 		
 		ProfesorDAO profesorDB = new ProfesorDAO();
 		
 		profesorDB.connect();
-		profesorDB.insert(profesor1);
+		
+		//profesorDB.insert(profesor3);
+		
+		profesor1.setNombres("Gustavo de Dios");
+		profesor1.setApellido("Pita");
+		
+		var listaprofesores = profesorDB.getAll();
+		for (Profesor profesor : listaprofesores) {
+			System.out.println(profesor.mostrarInformacion());
+		}
+		
+		listaprofesores.get(0).setNombres("nombre");
+		listaprofesores.get(0).setApellido("apellido");
+		
+		profesorDB.update(listaprofesores.get(0));
+		//profesorDB.delete(listaprofesores.get(3));
 		profesorDB.closeConnection();
 		
 		
