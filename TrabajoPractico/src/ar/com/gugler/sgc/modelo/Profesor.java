@@ -18,9 +18,25 @@ public class Profesor extends Persona {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Profesor(String numeroDocumento, String apellido, String nombres, String cuil) {
-		super(numeroDocumento, apellido, nombres);
+	public Profesor(
+			String cuil,
+			String numeroDocumento,
+			String apellido,
+			String nombres,
+			Date fechaNacimiento,
+			String domicilio,
+			String telefono,
+			String correoElectronico,
+			Date fechaIngreso) {
+		super(numeroDocumento,
+				apellido,
+				nombres,
+				fechaNacimiento,
+				domicilio,
+				telefono,
+				correoElectronico);
 		this.cuil = cuil;
+		this.fechaIngreso = fechaIngreso;
 	}
 
 	/**

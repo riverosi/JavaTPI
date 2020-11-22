@@ -1,5 +1,7 @@
 package ar.com.gugler.sgc.modelo;
 
+import java.util.Date;
+
 public class Alumno extends Persona {
 	/**
 	 * Attributes
@@ -16,6 +18,13 @@ public class Alumno extends Persona {
 	public Alumno(String numeroDocumento, String apellido, String nombres, String legajo) {
 		super(numeroDocumento, apellido, nombres);
 		this.legajo = legajo;
+	}
+	
+	public Alumno(String numeroDocumento2, String apellido2, String nombres2, Date fechaNacimiento2, String domicilio2,
+			String telefono2, String correoElectronico2, String legajo2) {
+		super(numeroDocumento2, apellido2, nombres2, fechaNacimiento2, domicilio2, telefono2, correoElectronico2);
+		this.legajo = legajo2;
+		
 	}
 	/**
 	 * Getters and Setters

@@ -1,9 +1,9 @@
 package ar.com.gugler.sgc.modelo;
-import ar.com.gugler.dao.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Asignatura extends BaseModelo{
+public class Asignatura extends BaseModelo {
 	/**
 	 * Attributes
 	 */
@@ -11,6 +11,7 @@ public class Asignatura extends BaseModelo{
 	private String nombre;
 	private List<Alumno> alumnos;
 	private Profesor profesor;
+
 	/**
 	 * Constructors
 	 */
@@ -18,6 +19,7 @@ public class Asignatura extends BaseModelo{
 		super();
 		alumnos = new ArrayList<Alumno>();
 	}
+
 	public Asignatura(Integer codigo, String nombre, Profesor profesor) {
 		super();
 		this.codigo = codigo;
@@ -32,27 +34,35 @@ public class Asignatura extends BaseModelo{
 	public Integer getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public Profesor getProfesor() {
 		return profesor;
 	}
+
 	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
 	}
+
 	public List<Alumno> getAlumnos() {
 		return alumnos;
 	}
+
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
+
 	/**
 	 * Methods of class
 	 */
@@ -60,5 +70,5 @@ public class Asignatura extends BaseModelo{
 	public String toString() {
 		return "Asignatura [codigo=" + codigo + ", nombre=" + nombre + ", profesor=" + profesor + "]";
 	}
-	
+
 }

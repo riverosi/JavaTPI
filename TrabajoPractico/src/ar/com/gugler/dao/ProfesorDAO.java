@@ -1,102 +1,89 @@
+/**
+ * 
+ */
 package ar.com.gugler.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+
 import ar.com.gugler.sgc.modelo.Profesor;
 
-public class ProfesorDAO extends BaseDAO<Profesor> {
+/**
+ * @author emanuel
+ *
+ */
+public class ProfesorDAO extends GenericDAO<Profesor> {
 
 	@Override
-	public void insert(Profesor profesor) throws SQLException {
+	public String getTable() {
+		return "PROFESORES";
+	}
+
+	@Override
+	protected String getInsertSql() {
+		return "INSERT INTO `tp`.`profesores` (`cuil`, `numeroDocumento`, `apellido`, `nombres`, `fechaNacimiento`, `domicilio`, `telefono`, `correoElectronico`, `fechaIngreso`) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+	}
+
+	@Override
+	protected void setValuesInsert(PreparedStatement preparedStatement, Profesor object) throws SQLException {
+		preparedStatement.setString(1, object.getCuil());
+		preparedStatement.setString(2, object.getNumeroDocumento());
+		preparedStatement.setString(3, object.getApellido());
+		preparedStatement.setString(4, object.getNombres());
+		preparedStatement.setDate(5, new java.sql.Date(object.getFechaNacimiento().getTime()));
+		preparedStatement.setString(6, object.getDomicilio());
+		preparedStatement.setString(7, object.getTelefono());
+		preparedStatement.setString(8, object.getCorreoElectronico());
+		preparedStatement.setDate(9, new java.sql.Date(object.getFechaIngreso().getTime()));
+	}
+
+	@Override
+	protected String getUpdateSql() {
+		return "UPDATE `tp`.`profesores` SET `cuil` = ?, `numeroDocumento` = ?, "
+				+ "`apellido` = ?, `nombres` = ?, `fechaNacimiento` = ?, "
+				+ "`domicilio` = ?, `telefono` = ?, `correoElectronico` = ?, `fechaIngreso` = ? "
+				+ "WHERE (`idProfesores` = ?) ";
+	}
+
+	@Override
+	protected void setValuesUpdate(PreparedStatement preparedStatement, Profesor object) throws SQLException {
+		preparedStatement.setString(1, object.getCuil());
+		preparedStatement.setString(2, object.getNumeroDocumento());
+		preparedStatement.setString(3, object.getApellido());
+		preparedStatement.setString(4, object.getNombres());
+		preparedStatement.setDate(5, new java.sql.Date(object.getFechaNacimiento().getTime()));
+		preparedStatement.setString(6, object.getDomicilio());
+		preparedStatement.setString(7, object.getTelefono());
+		preparedStatement.setString(8, object.getCorreoElectronico());
+		preparedStatement.setDate(9, new java.sql.Date(object.getFechaIngreso().getTime()));
+		preparedStatement.setLong(10, object.getId());
+	}
+
+	@Override
+	protected Profesor populate(ResultSet rs) throws SQLException {
+		Long id = rs.getLong(1);
+		String cuil = rs.getString(2);
+		String numeroDocumento = rs.getString(3);
+		String apellido = rs.getString(4);
+		String nombres = rs.getString(5);
+		Date fechaNacimiento = rs.getDate(6);
+		String domicilio = rs.getString(7);
+		String telefono = rs.getString(8);
+		String correoElectronico = rs.getString(9);
+		Date fechaIngreso = rs.getDate(10);
+		Profesor p = new Profesor(cuil, numeroDocumento, apellido, nombres, fechaNacimiento, domicilio, telefono,
+				correoElectronico, fechaIngreso);
+		p.setId(id);
+		return p;
+	}
+
+	@Override
+	protected String getDeleteSql() {
 		// TODO Auto-generated method stub
-		PreparedStatement pstmt = null;
-		ResultSet res = null;
-		String sqlInsert = "INSERT INTO `tp`.`profesores` (`numeroDocumento`, `nombres`, `apellido`, `cuil`) VALUES (?,?,?,?);";
-		try {
-			pstmt = con.prepareStatement(sqlInsert,Statement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1 , profesor.getNumeroDocumento());
-			pstmt.setString(2 , profesor.getNombres());
-			pstmt.setString(3 , profesor.getApellido());
-			pstmt.setString(4 , profesor.getCuil());
-			pstmt.executeUpdate();
-			res = pstmt.getGeneratedKeys();
-			while (res.next()) {
-				profesor.setId(res.getLong(1));
-		      }
-			System.out.println("Successful data Insert.");
-			res.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			System.out.println("Error insert Alumno data.");
-			e.printStackTrace();
-		}
+		return "DELETE FROM `tp`.`profesores` WHERE (`idProfesores` = ?) ";
 	}
-
-	@Override
-	public void delete(Profesor profesor) throws SQLException {
-		// TODO Auto-generated method stub
-		PreparedStatement pstmt = null;
-		String sqlDelete = "DELETE FROM `tp`.`profesores` WHERE (`idProfesores` = ?)";
-		try {
-			pstmt = con.prepareStatement(sqlDelete);
-			pstmt.setLong(1, profesor.getId());
-			pstmt.executeUpdate();
-			pstmt.close();
-			System.out.println("Successful Deleting Profesor.");
-		} catch (SQLException e) {
-			System.err.println("Error Deleting Profesor.");
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void update(Profesor profesor) {
-		// TODO Auto-generated method stub
-		PreparedStatement pstmt = null;
-		String sqlUpdate = "UPDATE `tp`.`profesores` SET `numeroDocumento` = ?, `nombres` = ?, `apellido` = ?, `cuil` = ?"
-				+ " WHERE (`idProfesores` = ?);";
-		try {
-			pstmt = con.prepareStatement(sqlUpdate);
-			pstmt.setString(1 , profesor.getNumeroDocumento());
-			pstmt.setString(2 , profesor.getNombres());
-			pstmt.setString(3 , profesor.getApellido());
-			pstmt.setString(4 , profesor.getCuil());
-			pstmt.setLong(5, profesor.getId());
-			pstmt.executeUpdate();
-			pstmt.close();
-			System.out.println("Successful Update of Profesor data.");
-		} catch (SQLException e) {
-			System.err.println("Error Updating Profesor.");
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public List<Profesor> getAll() throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet res = null;
-		var listaProfesores = new ArrayList<Profesor>();
-		String sqlGetAll = "SELECT * FROM tp.profesores;";
-		try {
-			pstmt = con.prepareStatement(sqlGetAll);
-			res = pstmt.executeQuery();
-			while (res.next()) {
-				var auxProfesor = new Profesor(res.getString(2), res.getString(3), res.getString(4), res.getString(5));
-				auxProfesor.setId(res.getLong(1));
-				listaProfesores.add(auxProfesor);
-		      }
-			System.out.println("Successful Get All Rows.");
-			res.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			System.out.println("Error Get All.");
-			e.printStackTrace();
-		} 	
-		return listaProfesores;
-	}
-
+	
 }

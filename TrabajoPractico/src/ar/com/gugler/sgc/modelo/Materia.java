@@ -12,6 +12,12 @@ public class Materia extends Asignatura {
 		super();
 		this.anio = anio;
 	}
+	public Materia(Integer codigo, String nombre, Long id_profesor, Integer anio) {
+		super(codigo, nombre, profesor);
+		this.getProfesor().setId(id_profesor);
+		this.anio = anio;
+	}
+
 	/**
 	 * Getters and Setters
 	 */

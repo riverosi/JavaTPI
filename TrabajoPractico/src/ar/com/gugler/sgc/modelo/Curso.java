@@ -1,12 +1,12 @@
 package ar.com.gugler.sgc.modelo;
 
 public class Curso extends Asignatura implements Administrable {
-	/*
+	/**
 	 * Attibutes
 	 */
 	private Integer curso;
 	private Integer cantidadAlumnos = 24;
-	/*
+	/**
 	 * Constructors
 	 */
 	public Curso(Integer curso) {
@@ -14,7 +14,7 @@ public class Curso extends Asignatura implements Administrable {
 		this.curso = curso;
 	}
 
-	/*
+	/**
 	 * Getters and Setters
 	 */
 	public Integer getCurso() {
@@ -23,7 +23,7 @@ public class Curso extends Asignatura implements Administrable {
 	public void setCurso(Integer curso) {
 		this.curso = curso;
 	}
-	/*
+	/**
 	 * Methods of class
 	 */
 	/**

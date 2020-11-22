@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import ar.com.gugler.sgc.modelo.BaseModelo;
+
 
 public abstract class BaseDAO <T extends BaseModelo> {
 	

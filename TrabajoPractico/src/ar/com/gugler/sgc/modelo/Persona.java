@@ -2,8 +2,6 @@ package ar.com.gugler.sgc.modelo;
 
 import java.util.Date;
 
-import ar.com.gugler.dao.BaseModelo;
-
 public abstract class Persona extends BaseModelo{
 	
 	/**
@@ -12,18 +10,31 @@ public abstract class Persona extends BaseModelo{
 	private String numeroDocumento;
 	private String apellido;
 	private String nombres;
-	private Date fechaNacimento;
+	private Date fechaNacimiento;
 	private String domicilio;
 	private String telefono;
 	private String correoElectronico;
 	/**
 	 * Constructors
 	 */
+	
 	public Persona(String numeroDocumento, String apellido, String nombres) {
 		super();
 		this.numeroDocumento = numeroDocumento;
 		this.apellido = apellido;
 		this.nombres = nombres;
+	}
+	public Persona(String numeroDocumento2, String apellido2, String nombres2, Date fechaNacimiento2, String domicilio2,
+			String telefono2, String correoElectronico2) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.numeroDocumento = numeroDocumento2;
+		this.apellido = apellido2;
+		this.nombres = nombres2;
+		this.fechaNacimiento = fechaNacimiento2;
+		this.domicilio = domicilio2;
+		this.telefono = telefono2;
+		this.correoElectronico = correoElectronico2;
 	}
 	/**
 	 * Getters and Setters of class
@@ -46,11 +57,11 @@ public abstract class Persona extends BaseModelo{
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
-	public Date getFechaNacimento() {
-		return fechaNacimento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
-	public void setFechaNacimento(Date fechaNacimento) {
-		this.fechaNacimento = fechaNacimento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getDomicilio() {
 		return domicilio;
