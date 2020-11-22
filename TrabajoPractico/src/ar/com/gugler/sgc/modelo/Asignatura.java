@@ -20,11 +20,11 @@ public class Asignatura extends BaseModelo {
 		alumnos = new ArrayList<Alumno>();
 	}
 
-	public Asignatura(Integer codigo, String nombre, Profesor profesor) {
+	public Asignatura(Integer codigo, String nombre, Long idProfesor) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.profesor = profesor;
+		this.profesor.setId(idProfesor);
 		alumnos = new ArrayList<Alumno>();
 	}
 
