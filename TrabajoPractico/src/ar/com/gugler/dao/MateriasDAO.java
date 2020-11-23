@@ -3,9 +3,7 @@ package ar.com.gugler.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-import ar.com.gugler.sgc.modelo.Alumno;
 import ar.com.gugler.sgc.modelo.Materia;
 
 public class MateriasDAO extends GenericDAO<Materia> {
@@ -33,9 +31,9 @@ public class MateriasDAO extends GenericDAO<Materia> {
 		preparedStatement.setInt(1, object.getCodigo());
 		preparedStatement.setString(2, object.getNombre());
 		preparedStatement.setLong(3, object.getProfesor().getId());
-		preparedStatement.setInt(4, object.getAnio());	
+		preparedStatement.setInt(4, object.getAnio());
 		preparedStatement.setLong(5, object.getId());
-		
+
 	}
 
 	@Override
@@ -60,5 +58,5 @@ public class MateriasDAO extends GenericDAO<Materia> {
 	protected String getDeleteSql() {
 		return "DELETE FROM `tp`.`materias` WHERE (`idMaterias` = ?) ";
 	}
-	
+
 }
