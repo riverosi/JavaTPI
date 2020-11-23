@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ar.com.gugler.sgc.modelo.Materia;
+import ar.com.gugler.sgc.modelo.Profesor;
 
 public class MateriasDAO extends GenericDAO<Materia> {
 
@@ -49,7 +50,9 @@ public class MateriasDAO extends GenericDAO<Materia> {
 		String nombre = rs.getString(3);
 		Long id_profesor = rs.getLong(4);
 		Integer anio = rs.getInt(5);
-		var m = new Materia(codigo, nombre, id_profesor, anio);
+		var p = new Profesor("0","0","0");
+		p.setId(id_profesor);
+		var m = new Materia(codigo, nombre, p, anio);
 		m.setId(id);
 		return m;
 	}

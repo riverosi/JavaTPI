@@ -2,7 +2,6 @@ package ar.com.gugler.sgc.modelo;
 
 import java.sql.SQLException;
 import java.util.Date;
-
 import ar.com.gugler.dao.AlumnoDAO;
 import ar.com.gugler.dao.MateriasDAO;
 import ar.com.gugler.dao.ProfesorDAO;
@@ -67,7 +66,7 @@ public class Main {
 		AlumnoDAO alumnosDB = new AlumnoDAO();
 //		alumnosDB.insert(alumnoAL);
 //		alumnosDB.insert(alumnoAS);
-		
+
 		var listaAlumnos = alumnosDB.getAll();
 		for (Alumno alumno : listaAlumnos) {
 			Universidad.mostrarDatos(alumno);
@@ -78,13 +77,16 @@ public class Main {
 		/*
 		 * DATABASE DE MATERIAS
 		 */
-		var biologia = new Materia(135, "Introducción a la Fuerza", listaProfesores.get(0).getId(), 2020);
+		var biologia = new Materia(135, "Introducción a la Fuerza", listaProfesores.get(0), 2020);
 		biologia.setAlumnos(listaAlumnos);
 		biologia.setProfesor(listaProfesores.get(0));
-		var materiasDAO = new MateriasDAO();
-		materiasDAO.insert(biologia);
-
-
+		var materiasDB = new MateriasDAO();
+//		materiasDAO.insert(biologia);
+		var listaMaterias = materiasDB.getAll();
+		for (Materia materia : listaMaterias) {
+			System.out.println(materia.toString());
+		}
+		
 	}
 
 }
