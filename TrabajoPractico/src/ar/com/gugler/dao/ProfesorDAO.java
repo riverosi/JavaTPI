@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-
 import ar.com.gugler.sgc.modelo.Profesor;
 
 /**
@@ -85,5 +84,5 @@ public class ProfesorDAO extends GenericDAO<Profesor> {
 		// TODO Auto-generated method stub
 		return "DELETE FROM `tp`.`profesores` WHERE (`idProfesores` = ?) ";
 	}
-	
+
 }

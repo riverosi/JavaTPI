@@ -40,7 +40,7 @@ public class Main {
 		cursoJava.agregarAlumno(alumnoAL);
 		cursoJava.agregarAlumno(alumnoCT);
 		cursoJava.setProfesor(profesorHS);
-
+		System.out.println();
 		System.out.print("La cantidad de alumnos en el Curso es: ");
 		System.out.println(cursoJava.getAlumnos().size());
 
@@ -51,10 +51,11 @@ public class Main {
 
 //		profesorDB.insert(profesorHS);
 //		profesorDB.insert(profesorKO);
-
+		System.out.println();
+		System.out.println("List of Profesores in Data Base:");
 		var listaProfesores = profesorDB.getAll();
 		for (Profesor profesor : listaProfesores) {
-			Universidad.mostrarDatos(profesor);
+			System.out.println(profesor.mostrarInformacion());
 		}
 
 //		listaProfesores.get(0).setDomicilio("La luna");
@@ -66,14 +67,15 @@ public class Main {
 		AlumnoDAO alumnosDB = new AlumnoDAO();
 //		alumnosDB.insert(alumnoAL);
 //		alumnosDB.insert(alumnoAS);
-
+		System.out.println();
+		System.out.println("List of alumnos in Data Base:");
 		var listaAlumnos = alumnosDB.getAll();
 		for (Alumno alumno : listaAlumnos) {
-			Universidad.mostrarDatos(alumno);
+			System.out.println(alumno.mostrarInformacion());
 		}
 		listaAlumnos.get(0).setApellido("Obi-Wan");
 		alumnosDB.update(listaAlumnos.get(0));
-		alumnosDB.delete(2L);
+//		alumnosDB.delete(2L);
 		/*
 		 * DATABASE DE MATERIAS
 		 */
@@ -82,10 +84,14 @@ public class Main {
 		biologia.setProfesor(listaProfesores.get(0));
 		var materiasDB = new MateriasDAO();
 //		materiasDAO.insert(biologia);
+		System.out.println();
+		System.out.println("List of materias in Data Base:");
 		var listaMaterias = materiasDB.getAll();
 		for (Materia materia : listaMaterias) {
 			System.out.println(materia.toString());
 		}
+//		materiasDB.delete(listaMaterias.get(1).getId());
+		
 		
 	}
 

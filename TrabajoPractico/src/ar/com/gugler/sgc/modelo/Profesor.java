@@ -3,38 +3,25 @@ package ar.com.gugler.sgc.modelo;
 import java.util.Date;
 
 public class Profesor extends Persona {
-	
+
 	/**
 	 * Attributes
 	 */
 	private String cuil;
 	private Date fechaIngreso;
+
 	/**
 	 * Constructors
 	 */
-	
+
 	public Profesor(String numeroDocumento, String apellido, String nombres) {
 		super(numeroDocumento, apellido, nombres);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Profesor(
-			String cuil,
-			String numeroDocumento,
-			String apellido,
-			String nombres,
-			Date fechaNacimiento,
-			String domicilio,
-			String telefono,
-			String correoElectronico,
-			Date fechaIngreso) {
-		super(numeroDocumento,
-				apellido,
-				nombres,
-				fechaNacimiento,
-				domicilio,
-				telefono,
-				correoElectronico);
+
+	public Profesor(String cuil, String numeroDocumento, String apellido, String nombres, Date fechaNacimiento,
+			String domicilio, String telefono, String correoElectronico, Date fechaIngreso) {
+		super(numeroDocumento, apellido, nombres, fechaNacimiento, domicilio, telefono, correoElectronico);
 		this.cuil = cuil;
 		this.fechaIngreso = fechaIngreso;
 	}
@@ -57,20 +44,23 @@ public class Profesor extends Persona {
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
+
 	/**
 	 * Methods of class
 	 */
-	
+
 	@Override
 	public String mostrarInformacion() {
 		// TODO Auto-generated method stub
-		return "Profesor [Nombre y apellido= " + this.getNombres().toUpperCase() + " " + this.getApellido().toUpperCase() + 
-				", Cuil: "+ this.getCuil() + "]"; 
+		return "Profesor [Nombre y apellido= " + this.getNombres().toUpperCase() + " "
+				+ this.getApellido().toUpperCase() + ", Cuil: " + this.getCuil() + "]";
 	}
 
 	@Override
 	public String toString() {
-		return "Profesor [cuil=" + cuil + ", fechaIngreso=" + fechaIngreso + "]";
+		return "Profesor [cuil= " + cuil + ", fechaIngreso= " + fechaIngreso + ", id= " + id
+				+ ", getNumeroDocumento()= " + getNumeroDocumento() + ", getApellido()= " + getApellido()
+				+ ", getNombres()= " + getNombres() + "]";
 	}
 
 	@Override
@@ -97,7 +87,5 @@ public class Profesor extends Persona {
 			return false;
 		return true;
 	}
-	
-	
 
 }

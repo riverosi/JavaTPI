@@ -4,13 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-
 import ar.com.gugler.sgc.modelo.Alumno;
 
 public class AlumnoDAO extends GenericDAO<Alumno> {
 
 	@Override
-	public String getTable() {
+	protected String getTable() {
 		// TODO Auto-generated method stub
 		return "ALUMNOS";
 	}
@@ -68,7 +67,8 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 		String telefono = rs.getString(7);
 		String correoElectronico = rs.getString(8);
 		String legajo = rs.getString(9);
-		var a =  new Alumno(numeroDocumento, apellido, nombres, fechaNacimiento, domicilio, telefono, correoElectronico, legajo);
+		var a = new Alumno(numeroDocumento, apellido, nombres, fechaNacimiento, domicilio, telefono, correoElectronico,
+				legajo);
 		a.setId(id);
 		return a;
 	}
@@ -77,7 +77,5 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 	protected String getDeleteSql() {
 		return "DELETE FROM `tp`.`alumnos` WHERE (`idAlumnos` = ?) ";
 	}
-
-	
 
 }

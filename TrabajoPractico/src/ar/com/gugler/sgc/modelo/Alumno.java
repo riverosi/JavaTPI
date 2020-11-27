@@ -6,8 +6,9 @@ public class Alumno extends Persona {
 	/**
 	 * Attributes
 	 */
-	
+
 	private String legajo;
+
 	/**
 	 * Constructors
 	 */
@@ -15,21 +16,23 @@ public class Alumno extends Persona {
 		super(numeroDocumento, apellido, nombres);
 		// TODO Auto-generated constructor stub
 	}
+
 	public Alumno(String numeroDocumento, String apellido, String nombres, String legajo) {
 		super(numeroDocumento, apellido, nombres);
 		this.legajo = legajo;
 	}
-	
+
 	public Alumno(String numeroDocumento2, String apellido2, String nombres2, Date fechaNacimiento2, String domicilio2,
 			String telefono2, String correoElectronico2, String legajo2) {
 		super(numeroDocumento2, apellido2, nombres2, fechaNacimiento2, domicilio2, telefono2, correoElectronico2);
 		this.legajo = legajo2;
-		
+
 	}
+
 	/**
 	 * Getters and Setters
 	 */
-	
+
 	public String getLegajo() {
 		return legajo;
 	}
@@ -37,18 +40,21 @@ public class Alumno extends Persona {
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
+
 	/**
 	 * Methods of class
 	 */
-	
+
 	@Override
 	public String mostrarInformacion() {
-		return "Alumno [Nombre y apellido= " + this.getNombres() +" "+ this.getApellido() +", DNI: "+ this.getNumeroDocumento() +"]";
+		return "Alumno [Nombre y apellido= " + this.getNombres() + " " + this.getApellido() + ", DNI: "
+				+ this.getNumeroDocumento() + "]";
 	}
 
 	@Override
 	public String toString() {
-		return "Alumno [legajo=" + legajo + "]";
+		return "Alumno [legajo= " + legajo + ", id= " + id + ", getNumeroDocumento()= " + getNumeroDocumento()
+				+ ", getApellido()= " + getApellido() + ", getNombres()= " + getNombres() + "]";
 	}
 
 	@Override
@@ -75,6 +81,5 @@ public class Alumno extends Persona {
 			return false;
 		return true;
 	}
-	
 
 }

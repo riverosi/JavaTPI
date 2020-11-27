@@ -18,7 +18,7 @@ import ar.com.gugler.sgc.modelo.BaseModelo;
  */
 public abstract class GenericDAO<T extends BaseModelo>{
 
-	public abstract String getTable();
+	protected abstract String getTable();
 
 	protected abstract String getInsertSql();
 	
