@@ -52,7 +52,7 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 	protected String getUpdateSql() {
 		// TODO Auto-generated method stub
 		return "UPDATE `tp`.`alumnos` SET `numeroDocumento` = ?, `apellido` = ?, `nombres` = ?, `fechaNacimiento` = ?, `domicilio` = ?, `telefono` = ?, `correoElectronico` = ?, `legajo` = ? "
-				+ "WHERE (`idAlumnos` = ?) ";
+				+ "WHERE (`id` = ?) ";
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 
 	@Override
 	protected String getDeleteSql() {
-		return "DELETE FROM `tp`.`alumnos` WHERE (`idAlumnos` = ?) ";
+		return "DELETE FROM `tp`.`alumnos` WHERE (`id` = ?) ";
 	}
 
 }

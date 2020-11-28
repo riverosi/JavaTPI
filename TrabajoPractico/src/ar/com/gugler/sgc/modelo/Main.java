@@ -79,19 +79,22 @@ public class Main {
 		/*
 		 * DATABASE DE MATERIAS
 		 */
-		var biologia = new Materia(135, "Introducción a la Fuerza", listaProfesores.get(0), 2020);
+		var biologia = new Materia(135, "Celula 1", listaProfesores.get(0), 2020);
 		biologia.setAlumnos(listaAlumnos);
 		biologia.setProfesor(listaProfesores.get(0));
 		var materiasDB = new MateriasDAO();
-//		materiasDAO.insert(biologia);
+		materiasDB.insert(biologia);
 		System.out.println();
 		System.out.println("List of materias in Data Base:");
 		var listaMaterias = materiasDB.getAll();
 		for (Materia materia : listaMaterias) {
 			System.out.println(materia.toString());
+//			materia = materiasDB.get(materia.getId());
+			for (var alumno : materia.getAlumnos()) {
+				System.out.println(alumno);
+			}
 		}
 //		materiasDB.delete(listaMaterias.get(1).getId());
-		
 		
 	}
 

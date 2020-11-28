@@ -3,6 +3,9 @@ package ar.com.gugler.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import ar.com.gugler.sgc.modelo.Alumno;
 import ar.com.gugler.sgc.modelo.Materia;
 import ar.com.gugler.sgc.modelo.Profesor;
 
@@ -38,7 +41,7 @@ public class MateriasDAO extends GenericDAO<Materia> {
 
 	@Override
 	protected String getUpdateSql() {
-		return "UPDATE `tp`.`materias` SET `codigo` = ?, `nombre` = ?, `id_profesor` = ?, `anio` = ? WHERE (`idMaterias` = ?) ";
+		return "UPDATE `tp`.`materias` SET `codigo` = ?, `nombre` = ?, `id_profesor` = ?, `anio` = ? WHERE (`id` = ?) ";
 	}
 
 	@Override
@@ -58,7 +61,60 @@ public class MateriasDAO extends GenericDAO<Materia> {
 
 	@Override
 	protected String getDeleteSql() {
-		return "DELETE FROM `tp`.`materias` WHERE (`idMaterias` = ?) ";
+		return "DELETE FROM `tp`.`materias` WHERE (`id` = ?) ";
+	}
+
+	@Override
+	public boolean insert(Materia object) throws SQLException {
+		var result = super.insert(object);
+		java.sql.Connection connection = Connection.getInstance().getConnection();
+		var stmt = connection.createStatement();
+		ResultSet res = stmt.executeQuery("SELECT MAX(id) FROM materias");
+		res.next();
+		var materiaId = res.getLong(1);
+		for (var alumno : object.getAlumnos()) {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("INSERT INTO `tp`.`alumnos_materias` (`idAlumno`, `idMaterias`) VALUES (?,?);");
+			preparedStatement.setLong(1, alumno.getId());
+			preparedStatement.setLong(2, materiaId);
+			preparedStatement.execute();
+		}
+		return result;
+	}
+
+	@Override
+	public Materia get(Long id) throws SQLException {
+		var materia = super.get(id);
+		java.sql.Connection connection = Connection.getInstance().getConnection();
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("SELECT alumnos_materias.idAlumno FROM alumnos_materias WHERE idMaterias=? ");
+		preparedStatement.setLong(1, materia.getId());
+		ResultSet rs = preparedStatement.executeQuery();
+		AlumnoDAO alumnoDao = new AlumnoDAO();
+		while (rs.next()) {
+			var idAlumno = rs.getLong(1);
+			var alumno = alumnoDao.get(idAlumno);
+			materia.getAlumnos().add(alumno);
+		}
+		return materia;
+	}
+	@Override
+	public List<Materia> getAll() throws SQLException {
+		var materias = super.getAll();
+		java.sql.Connection connection = Connection.getInstance().getConnection();
+		for (Materia materia : materias) {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("SELECT alumnos_materias.idAlumno FROM alumnos_materias WHERE idMaterias=? ");
+			preparedStatement.setLong(1, materia.getId());
+			ResultSet rs = preparedStatement.executeQuery();
+			AlumnoDAO alumnoDao = new AlumnoDAO();
+			while (rs.next()) {
+				var idAlumno = rs.getLong(1);
+				var alumno = alumnoDao.get(idAlumno);
+				materia.getAlumnos().add(alumno);
+			}
+		}
+		return materias;
 	}
 
 }
