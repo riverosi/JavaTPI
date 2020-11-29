@@ -8,10 +8,10 @@ public class Connection {
 	private static Connection instance;
 	private java.sql.Connection con;
 
-	protected String DRIVER = "com.mysql.jdbc.Driver";
-	protected String URL = "jdbc:mysql://localhost/tp?useSSL=false";
-	protected String USER = "root";
-	protected String PASSWORD = "simplementememoria";
+	final protected String DRIVER = "com.mysql.jdbc.Driver";
+	final protected String URL = "jdbc:mysql://localhost/tp?useSSL=false";
+	final protected String USER = "root";
+	final protected String PASSWORD = "simplementememoria";
 
 	private Connection() {
 		try {

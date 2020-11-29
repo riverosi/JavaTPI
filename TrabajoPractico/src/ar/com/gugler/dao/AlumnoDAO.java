@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+
 import ar.com.gugler.sgc.modelo.Alumno;
 
 public class AlumnoDAO extends GenericDAO<Alumno> {
@@ -71,11 +72,6 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 				legajo);
 		a.setId(id);
 		return a;
-	}
-
-	@Override
-	protected String getDeleteSql() {
-		return "DELETE FROM `tp`.`alumnos` WHERE (`id` = ?) ";
 	}
 
 }

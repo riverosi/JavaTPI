@@ -3,6 +3,7 @@ package ar.com.gugler.sgc.modelo;
 import java.sql.SQLException;
 import java.util.Date;
 import ar.com.gugler.dao.AlumnoDAO;
+import ar.com.gugler.dao.CursoDAO;
 import ar.com.gugler.dao.MateriasDAO;
 import ar.com.gugler.dao.ProfesorDAO;
 
@@ -34,16 +35,6 @@ public class Main {
 //		Universidad.mostrarDatos(alumnoAS);
 //		Universidad.mostrarDatos(profesorHS);
 
-		var cursoJava = new Curso(123);
-
-		cursoJava.agregarAlumno(alumnoAS);
-		cursoJava.agregarAlumno(alumnoAL);
-		cursoJava.agregarAlumno(alumnoCT);
-		cursoJava.setProfesor(profesorHS);
-		System.out.println();
-		System.out.print("La cantidad de alumnos en el Curso es: ");
-		System.out.println(cursoJava.getAlumnos().size());
-
 		/*
 		 * DATA BASE PROFESOR
 		 */
@@ -55,7 +46,7 @@ public class Main {
 		System.out.println("List of Profesores in Data Base:");
 		var listaProfesores = profesorDB.getAll();
 		for (Profesor profesor : listaProfesores) {
-			System.out.println(profesor.mostrarInformacion());
+			System.out.println(profesor);
 		}
 
 //		listaProfesores.get(0).setDomicilio("La luna");
@@ -71,7 +62,7 @@ public class Main {
 		System.out.println("List of alumnos in Data Base:");
 		var listaAlumnos = alumnosDB.getAll();
 		for (Alumno alumno : listaAlumnos) {
-			System.out.println(alumno.mostrarInformacion());
+			System.out.println(alumno);
 		}
 		listaAlumnos.get(0).setApellido("Obi-Wan");
 		alumnosDB.update(listaAlumnos.get(0));
@@ -79,23 +70,51 @@ public class Main {
 		/*
 		 * DATABASE DE MATERIAS
 		 */
-		var biologia = new Materia(135, "Celula 1", listaProfesores.get(0), 2020);
-		biologia.setAlumnos(listaAlumnos);
-		biologia.setProfesor(listaProfesores.get(0));
+		var fuerza = new Materia(135, "Fuerza III", listaProfesores.get(0), 2020);
+		fuerza.setAlumnos(listaAlumnos);
+		fuerza.setProfesor(listaProfesores.get(0));
 		var materiasDB = new MateriasDAO();
-		materiasDB.insert(biologia);
+//		materiasDB.insert(fuerza);
 		System.out.println();
 		System.out.println("List of materias in Data Base:");
 		var listaMaterias = materiasDB.getAll();
 		for (Materia materia : listaMaterias) {
-			System.out.println(materia.toString());
-//			materia = materiasDB.get(materia.getId());
+			System.out.println(materia);
+			materia = materiasDB.get(materia.getId());
 			for (var alumno : materia.getAlumnos()) {
 				System.out.println(alumno);
 			}
 		}
-//		materiasDB.delete(listaMaterias.get(1).getId());
-		
+//		materiasDB.delete(listaMaterias.get(3));
+		/*
+		 * DATA BASE CURSO
+		 */
+		var cursoJava = new Curso(123, "Curso de Python", listaProfesores.get(0), 1234);
+		cursoJava.setAlumnos(listaAlumnos);
+
+		var cursoDB = new CursoDAO();
+//		cursoDB.insert(cursoJava);
+		var listaCursos = cursoDB.getAll();
+		System.out.println();
+		System.out.println("List of cursos in Data Base:");
+		for (Curso curso : listaCursos) {
+
+			System.out.println(curso);
+			curso = cursoDB.get(curso.getId());
+
+			if (curso.getAlumnos().size() > 0) {
+				System.out.println("Alumnos in this Curso:");
+				for (var alumno : curso.getAlumnos()) {
+					System.out.println(alumno);
+				}
+			}
+
+			else {
+				System.out.println("Empty Curso");
+			}
+
+		}
+
 	}
 
 }

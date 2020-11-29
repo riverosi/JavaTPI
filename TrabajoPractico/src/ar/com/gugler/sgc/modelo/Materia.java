@@ -28,7 +28,7 @@ public class Materia extends Asignatura {
 	}
 	@Override
 	public String toString() {
-		return "Materia [anio= " + anio + ", id= " + id + ", getNombre()= " + this.getNombre() + "]";
+		return "Materia [anio= " + anio + ", id= " + id + ", Nombre= " + this.getNombre() + "]";
 	}
 
 

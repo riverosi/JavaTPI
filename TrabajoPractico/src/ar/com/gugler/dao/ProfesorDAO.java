@@ -7,10 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+
 import ar.com.gugler.sgc.modelo.Profesor;
 
 /**
- * @author emanuel
+ * @author Ignacio Riveros
  *
  */
 public class ProfesorDAO extends GenericDAO<Profesor> {
@@ -43,8 +44,7 @@ public class ProfesorDAO extends GenericDAO<Profesor> {
 	protected String getUpdateSql() {
 		return "UPDATE `tp`.`profesores` SET `cuil` = ?, `numeroDocumento` = ?, "
 				+ "`apellido` = ?, `nombres` = ?, `fechaNacimiento` = ?, "
-				+ "`domicilio` = ?, `telefono` = ?, `correoElectronico` = ?, `fechaIngreso` = ? "
-				+ "WHERE (`idProfesores` = ?) ";
+				+ "`domicilio` = ?, `telefono` = ?, `correoElectronico` = ?, `fechaIngreso` = ? " + "WHERE (`id` = ?) ";
 	}
 
 	@Override
@@ -77,12 +77,6 @@ public class ProfesorDAO extends GenericDAO<Profesor> {
 				correoElectronico, fechaIngreso);
 		p.setId(id);
 		return p;
-	}
-
-	@Override
-	protected String getDeleteSql() {
-		// TODO Auto-generated method stub
-		return "DELETE FROM `tp`.`profesores` WHERE (`idProfesores` = ?) ";
 	}
 
 }

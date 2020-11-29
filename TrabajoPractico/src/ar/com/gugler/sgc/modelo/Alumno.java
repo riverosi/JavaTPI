@@ -53,8 +53,8 @@ public class Alumno extends Persona {
 
 	@Override
 	public String toString() {
-		return "Alumno [legajo= " + legajo + ", id= " + id + ", getNumeroDocumento()= " + getNumeroDocumento()
-				+ ", getApellido()= " + getApellido() + ", getNombres()= " + getNombres() + "]";
+		return "Alumno [legajo= " + legajo + ", id= " + id + ", NumeroDocumento= " + getNumeroDocumento()
+				+ ", Nombres y Apellido= " + getApellido() + " " + getNombres() + "]";
 	}
 
 	@Override
