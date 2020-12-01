@@ -2,10 +2,11 @@ package ar.com.gugler.sgc.modelo;
 
 import java.sql.SQLException;
 import java.util.Date;
-import ar.com.gugler.dao.AlumnoDAO;
-import ar.com.gugler.dao.CursoDAO;
-import ar.com.gugler.dao.MateriasDAO;
-import ar.com.gugler.dao.ProfesorDAO;
+
+import ar.com.gugler.sgc.dao.AlumnoDAO;
+import ar.com.gugler.sgc.dao.CursoDAO;
+import ar.com.gugler.sgc.dao.MateriasDAO;
+import ar.com.gugler.sgc.dao.ProfesorDAO;
 
 /**
  * Main Class
@@ -70,7 +71,7 @@ public class Main {
 		/*
 		 * DATABASE DE MATERIAS
 		 */
-		var fuerza = new Materia(135, "Fuerza III", listaProfesores.get(0), 2020);
+		var fuerza = new Materia(135, "Estrellas y galaxias", listaProfesores.get(0), 2020);
 		fuerza.setAlumnos(listaAlumnos);
 		fuerza.setProfesor(listaProfesores.get(0));
 		var materiasDB = new MateriasDAO();
@@ -85,7 +86,7 @@ public class Main {
 				System.out.println(alumno);
 			}
 		}
-//		materiasDB.delete(listaMaterias.get(3));
+//		materiasDB.delete(listaMaterias.get(0));
 		/*
 		 * DATA BASE CURSO
 		 */

@@ -1,4 +1,4 @@
-package ar.com.gugler.dao;
+package ar.com.gugler.sgc.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

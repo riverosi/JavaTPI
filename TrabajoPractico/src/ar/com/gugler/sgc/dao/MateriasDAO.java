@@ -1,122 +1,124 @@
-package ar.com.gugler.dao;
+package ar.com.gugler.sgc.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import ar.com.gugler.sgc.modelo.Curso;
+import ar.com.gugler.sgc.modelo.Materia;
 import ar.com.gugler.sgc.modelo.Profesor;
 
-public class CursoDAO extends GenericDAO<Curso> {
+public class MateriasDAO extends GenericDAO<Materia> {
 
 	@Override
-	protected String getTable() {
-		return "CURSOS";
+	public String getTable() {
+		return "MATERIAS";
 	}
 
 	@Override
 	protected String getInsertSql() {
-		return "INSERT INTO `tp`.`cursos` (`codigo`, `nombre`, `id_profesor`, `cupo`) VALUES (?, ?, ?, ?) ";
+		return "INSERT INTO `tp`.`materias` (`codigo`, `nombre`, `id_profesor`, `anio`) VALUES (?, ?, ?, ?) ";
 	}
 
 	@Override
-	protected void setValuesInsert(PreparedStatement preparedStatement, Curso object) throws SQLException {
+	protected void setValuesInsert(PreparedStatement preparedStatement, Materia object) throws SQLException {
 		preparedStatement.setInt(1, object.getCodigo());
 		preparedStatement.setString(2, object.getNombre());
 		preparedStatement.setLong(3, object.getProfesor().getId());
-		preparedStatement.setInt(4, object.getCupo());
-
+		preparedStatement.setInt(4, object.getAnio());
 	}
 
 	@Override
-	protected void setValuesUpdate(PreparedStatement preparedStatement, Curso object) throws SQLException {
+	protected void setValuesUpdate(PreparedStatement preparedStatement, Materia object) throws SQLException {
 		preparedStatement.setInt(1, object.getCodigo());
 		preparedStatement.setString(2, object.getNombre());
 		preparedStatement.setLong(3, object.getProfesor().getId());
-		preparedStatement.setInt(4, object.getCupo());
+		preparedStatement.setInt(4, object.getAnio());
 		preparedStatement.setLong(5, object.getId());
+
 	}
 
 	@Override
 	protected String getUpdateSql() {
-		return "UPDATE `tp`.`cursos` SET `nombre` = ?, `id_profesor` = ?, `curso` = ? WHERE (`id` = ?) ";
+		return "UPDATE `tp`.`materias` SET `codigo` = ?, `nombre` = ?, `id_profesor` = ?, `anio` = ? WHERE (`id` = ?) ";
 	}
 
 	@Override
-	protected Curso populate(ResultSet rs) throws SQLException {
+	protected Materia populate(ResultSet rs) throws SQLException {
+		// TODO Auto-generated method stub
 		Long id = rs.getLong(1);
 		Integer codigo = rs.getInt(2);
 		String nombre = rs.getString(3);
 		Long id_profesor = rs.getLong(4);
-		Integer cupo = rs.getInt(5);
+		Integer anio = rs.getInt(5);
 		var profesor = new Profesor("0", "0", "0");
 		profesor.setId(id_profesor);
-		var c = new Curso(codigo, nombre, profesor, cupo);
-		c.setId(id);
-		return c;
+		var m = new Materia(codigo, nombre, profesor, anio);
+		m.setId(id);
+		return m;
 	}
 
 	@Override
-	public boolean insert(Curso object) throws SQLException {
+	public boolean insert(Materia object) throws SQLException {
 		var result = super.insert(object);
 		java.sql.Connection connection = Connection.getInstance().getConnection();
 		var stmt = connection.createStatement();
-		ResultSet res = stmt.executeQuery("SELECT MAX(id) FROM cursos");
+		ResultSet res = stmt.executeQuery("SELECT MAX(id) FROM materias");
 		res.next();
-		var cursoId = res.getLong(1);
+		var materiaId = res.getLong(1);
 		for (var alumno : object.getAlumnos()) {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO `tp`.`alumnos_cursos` (`idAlumno`, `idCurso`) VALUES (?,?) ");
+					.prepareStatement("INSERT INTO `tp`.`alumnos_materias` (`idAlumno`, `idMaterias`) VALUES (?,?) ");
 			preparedStatement.setLong(1, alumno.getId());
-			preparedStatement.setLong(2, cursoId);
+			preparedStatement.setLong(2, materiaId);
 			preparedStatement.execute();
 		}
 		return result;
 	}
 
 	@Override
-	public Curso get(Long id) throws SQLException {
-		var curso = super.get(id);
+	public Materia get(Long id) throws SQLException {
+		var materia = super.get(id);
 		java.sql.Connection connection = Connection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
-				.prepareStatement("SELECT alumnos_cursos.idAlumno FROM alumnos_cursos WHERE idCurso=? ");
-		preparedStatement.setLong(1, curso.getId());
+				.prepareStatement("SELECT alumnos_materias.idAlumno FROM alumnos_materias WHERE idMaterias=? ");
+		preparedStatement.setLong(1, materia.getId());
 		ResultSet rs = preparedStatement.executeQuery();
 		AlumnoDAO alumnoDao = new AlumnoDAO();
 		while (rs.next()) {
 			var idAlumno = rs.getLong(1);
 			var alumno = alumnoDao.get(idAlumno);
-			curso.agregarAlumno(alumno);
+			materia.getAlumnos().add(alumno);
 		}
-		return curso;
+		return materia;
 	}
 
 	@Override
-	public List<Curso> getAll() throws SQLException {
-		var cursos = super.getAll();
+	public List<Materia> getAll() throws SQLException {
+		var materias = super.getAll();
 		java.sql.Connection connection = Connection.getInstance().getConnection();
-		for (Curso curso : cursos) {
+		for (Materia materia : materias) {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT alumnos_cursos.idAlumno FROM alumnos_cursos WHERE idCurso=? ");
-			preparedStatement.setLong(1, curso.getId());
+					.prepareStatement("SELECT alumnos_materias.idAlumno FROM alumnos_materias WHERE idMaterias=? ");
+			preparedStatement.setLong(1, materia.getId());
 			ResultSet rs = preparedStatement.executeQuery();
 			AlumnoDAO alumnoDao = new AlumnoDAO();
 			while (rs.next()) {
 				var idAlumno = rs.getLong(1);
 				var alumno = alumnoDao.get(idAlumno);
-				curso.agregarAlumno(alumno);
+				materia.getAlumnos().add(alumno);
 			}
 		}
-		return cursos;
+		return materias;
 	}
 	@Override
-	public int delete(Curso object) throws SQLException {
+	public int delete(Materia object) throws SQLException {
 		java.sql.Connection connection = Connection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
-				.prepareStatement("delete from tp.alumnos_cursos where idCurso = ? ");
+				.prepareStatement("delete from tp.alumnos_materias where idMaterias = ? ");
 		preparedStatement.setLong(1, object.getId());
 		preparedStatement.executeUpdate();
 		return super.delete(object);
 	}
+
 }
