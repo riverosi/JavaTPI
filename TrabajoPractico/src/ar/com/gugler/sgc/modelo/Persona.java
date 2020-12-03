@@ -2,11 +2,14 @@ package ar.com.gugler.sgc.modelo;
 
 import java.util.Date;
 
+/**
+ * Persona Class
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public abstract class Persona extends BaseModelo {
 
-	/**
-	 * Attributes
-	 */
 	private String numeroDocumento;
 	private String apellido;
 	private String nombres;
@@ -16,9 +19,12 @@ public abstract class Persona extends BaseModelo {
 	private String correoElectronico;
 
 	/**
-	 * Constructors
+	 * Short Constructor of Persona
+	 * 
+	 * @param numeroDocumento number of document
+	 * @param apellido        second name
+	 * @param nombres         first name
 	 */
-
 	public Persona(String numeroDocumento, String apellido, String nombres) {
 		super();
 		this.numeroDocumento = numeroDocumento;
@@ -26,9 +32,19 @@ public abstract class Persona extends BaseModelo {
 		this.nombres = nombres;
 	}
 
+	/**
+	 * Long Constructor of Persona
+	 * 
+	 * @param numeroDocumento2   number of document
+	 * @param apellido2          second name
+	 * @param nombres2           first name
+	 * @param fechaNacimiento2   date of birth
+	 * @param domicilio2         address
+	 * @param telefono2          telephone
+	 * @param correoElectronico2 email
+	 */
 	public Persona(String numeroDocumento2, String apellido2, String nombres2, Date fechaNacimiento2, String domicilio2,
 			String telefono2, String correoElectronico2) {
-		// TODO Auto-generated constructor stub
 		super();
 		this.numeroDocumento = numeroDocumento2;
 		this.apellido = apellido2;
@@ -39,9 +55,6 @@ public abstract class Persona extends BaseModelo {
 		this.correoElectronico = correoElectronico2;
 	}
 
-	/**
-	 * Getters and Setters of class
-	 */
 	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
@@ -98,9 +111,6 @@ public abstract class Persona extends BaseModelo {
 		this.correoElectronico = correoElectronico;
 	}
 
-	/**
-	 * Methods of class
-	 */
 	public abstract String mostrarInformacion();
 
 	@Override

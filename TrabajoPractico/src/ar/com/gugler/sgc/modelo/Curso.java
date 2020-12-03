@@ -1,23 +1,20 @@
 package ar.com.gugler.sgc.modelo;
 
+/**
+ * Curso Class
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class Curso extends Asignatura implements Administrable {
-	/**
-	 * Attibutes
-	 */
 	private Integer cupo;
 	final private Integer MAX_ALUMNOS = 24;
 
-	/**
-	 * Constructors
-	 */
 	public Curso(Integer codigo, String nombre, Profesor profesor, Integer cupo) {
 		super(codigo, nombre, profesor);
 		this.cupo = cupo;
 	}
 
-	/**
-	 * Getters and Setters
-	 */
 	public Integer getCupo() {
 		return cupo;
 	}
@@ -27,12 +24,9 @@ public class Curso extends Asignatura implements Administrable {
 	}
 
 	/**
-	 * Methods of class
-	 */
-	/**
 	 * Function to add alumno in list of Curso
 	 * 
-	 * @param alumno to add
+	 * @param alumno
 	 * @return when if succesfull return true, else return false
 	 */
 	public boolean agregarAlumno(Alumno alumno) {
@@ -47,7 +41,7 @@ public class Curso extends Asignatura implements Administrable {
 	 * Function to remove alumno in List of Curso
 	 * 
 	 * @param alumno
-	 * @retun void
+	 * 
 	 */
 	public void eliminarAlumno(Alumno alumno) {
 		this.getAlumnos().remove(alumno);
@@ -55,7 +49,6 @@ public class Curso extends Asignatura implements Administrable {
 
 	@Override
 	public boolean admiteInscripciones() {
-		// TODO Auto-generated method stub
 		if (this.getAlumnos().size() < MAX_ALUMNOS) {
 			return true;
 		} else {

@@ -9,10 +9,11 @@ import ar.com.gugler.sgc.dao.MateriasDAO;
 import ar.com.gugler.sgc.dao.ProfesorDAO;
 
 /**
- * Main Class
+ * Main Class of TPI for test the app
  * 
  * @author Riveros Ignacio
  * @version 1.0
+ * @since 11/2020
  */
 public class Main {
 

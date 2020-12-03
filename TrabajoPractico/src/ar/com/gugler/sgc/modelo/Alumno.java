@@ -2,19 +2,25 @@ package ar.com.gugler.sgc.modelo;
 
 import java.util.Date;
 
+/**
+ * Alumno Class
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class Alumno extends Persona {
-	/**
-	 * Attributes
-	 */
 
 	private String legajo;
 
 	/**
-	 * Constructors
+	 * Short Contructor of Alumno
+	 * 
+	 * @param numeroDocumento number of document
+	 * @param apellido        second name
+	 * @param nombres         first name
 	 */
 	public Alumno(String numeroDocumento, String apellido, String nombres) {
 		super(numeroDocumento, apellido, nombres);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Alumno(String numeroDocumento, String apellido, String nombres, String legajo) {
@@ -30,20 +36,22 @@ public class Alumno extends Persona {
 	}
 
 	/**
-	 * Getters and Setters
+	 * Function to get legajo of alumno
+	 * 
+	 * @return legajo String
 	 */
-
 	public String getLegajo() {
 		return legajo;
 	}
 
+	/**
+	 * Function to set legajo in alumno
+	 * 
+	 * @param legajo
+	 */
 	public void setLegajo(String legajo) {
 		this.legajo = legajo;
 	}
-
-	/**
-	 * Methods of class
-	 */
 
 	@Override
 	public String mostrarInformacion() {

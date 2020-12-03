@@ -8,6 +8,12 @@ import java.util.List;
 import ar.com.gugler.sgc.modelo.Curso;
 import ar.com.gugler.sgc.modelo.Profesor;
 
+/**
+ * CursoDAO Class used for Data Access Object Software Pattern
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class CursoDAO extends GenericDAO<Curso> {
 
 	@Override
@@ -110,6 +116,7 @@ public class CursoDAO extends GenericDAO<Curso> {
 		}
 		return cursos;
 	}
+
 	@Override
 	public int delete(Curso object) throws SQLException {
 		java.sql.Connection connection = Connection.getInstance().getConnection();

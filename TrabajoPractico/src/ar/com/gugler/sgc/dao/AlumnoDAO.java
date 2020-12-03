@@ -7,23 +7,26 @@ import java.util.Date;
 
 import ar.com.gugler.sgc.modelo.Alumno;
 
+/**
+ * AlumnoDAO Class Class used for Data Access Object Software Pattern
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class AlumnoDAO extends GenericDAO<Alumno> {
 
 	@Override
 	protected String getTable() {
-		// TODO Auto-generated method stub
 		return "ALUMNOS";
 	}
 
 	@Override
 	protected String getInsertSql() {
-		// TODO Auto-generated method stub
 		return "INSERT INTO `tp`.`alumnos` (`numeroDocumento`, `apellido`, `nombres`, `fechaNacimiento`, `domicilio`, `telefono`, `correoElectronico`, `legajo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
 	}
 
 	@Override
 	protected void setValuesInsert(PreparedStatement preparedStatement, Alumno object) throws SQLException {
-		// TODO Auto-generated method stub
 		preparedStatement.setString(1, object.getNumeroDocumento());
 		preparedStatement.setString(2, object.getApellido());
 		preparedStatement.setString(3, object.getNombres());
@@ -37,7 +40,6 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 
 	@Override
 	protected void setValuesUpdate(PreparedStatement preparedStatement, Alumno object) throws SQLException {
-		// TODO Auto-generated method stub
 		preparedStatement.setString(1, object.getNumeroDocumento());
 		preparedStatement.setString(2, object.getApellido());
 		preparedStatement.setString(3, object.getNombres());
@@ -51,14 +53,12 @@ public class AlumnoDAO extends GenericDAO<Alumno> {
 
 	@Override
 	protected String getUpdateSql() {
-		// TODO Auto-generated method stub
 		return "UPDATE `tp`.`alumnos` SET `numeroDocumento` = ?, `apellido` = ?, `nombres` = ?, `fechaNacimiento` = ?, `domicilio` = ?, `telefono` = ?, `correoElectronico` = ?, `legajo` = ? "
 				+ "WHERE (`id` = ?) ";
 	}
 
 	@Override
 	protected Alumno populate(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
 		Long id = rs.getLong(1);
 		String numeroDocumento = rs.getString(2);
 		String apellido = rs.getString(3);

@@ -1,19 +1,16 @@
-/**
- * @author Ignacio Riveros
- * @version 1.0
- */
 package ar.com.gugler.sgc.dao;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
-
+/**
+ * Connection Class used in Singleton Software Pattern. Unique instance
+ * of connection is used in this code
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class Connection {
-	/**
-	 * Attributes
-	 */
 	private static Connection instance;
 	private java.sql.Connection con;
 	/* Driver attributes change parameters for connect to data base */
@@ -22,9 +19,6 @@ public class Connection {
 	final protected String USER = "root";
 	final protected String PASSWORD = "simplementememoria";
 
-	/*
-	 * Constructor
-	 */
 	private Connection() {
 		try {
 			Class.forName(DRIVER);
@@ -58,7 +52,7 @@ public class Connection {
 	}
 
 	/**
-	 * function to close connection to data base
+	 * function for close connection to data base
 	 */
 	public void closeConnection() {
 		try {

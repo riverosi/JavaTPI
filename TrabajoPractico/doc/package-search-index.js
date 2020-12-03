@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"TrabajoPractico","l":"ar.com.gugler.sgc.dao"},{"m":"TrabajoPractico","l":"ar.com.gugler.sgc.modelo"}]

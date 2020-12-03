@@ -8,6 +8,12 @@ import java.util.List;
 import ar.com.gugler.sgc.modelo.Materia;
 import ar.com.gugler.sgc.modelo.Profesor;
 
+/**
+ * MateriasDAO Class Class used for Data Access Object Software Pattern
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class MateriasDAO extends GenericDAO<Materia> {
 
 	@Override
@@ -45,7 +51,6 @@ public class MateriasDAO extends GenericDAO<Materia> {
 
 	@Override
 	protected Materia populate(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
 		Long id = rs.getLong(1);
 		Integer codigo = rs.getInt(2);
 		String nombre = rs.getString(3);
@@ -111,6 +116,7 @@ public class MateriasDAO extends GenericDAO<Materia> {
 		}
 		return materias;
 	}
+
 	@Override
 	public int delete(Materia object) throws SQLException {
 		java.sql.Connection connection = Connection.getInstance().getConnection();

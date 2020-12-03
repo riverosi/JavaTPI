@@ -1,7 +1,3 @@
-/**
- * @author Ignacio Riveros
- * @version 1.0
- */
 package ar.com.gugler.sgc.dao;
 
 import java.sql.PreparedStatement;
@@ -12,6 +8,12 @@ import java.util.List;
 
 import ar.com.gugler.sgc.modelo.BaseModelo;
 
+/**
+ * GenericDAO Class used for Data Access Object Software Pattern
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public abstract class GenericDAO<T extends BaseModelo> {
 
 	protected abstract String getTable();
@@ -27,11 +29,11 @@ public abstract class GenericDAO<T extends BaseModelo> {
 	protected abstract T populate(ResultSet rs) throws SQLException;
 
 	/**
-	 * @ function to insert a object type T in table of data base. This function
-	 * also adds the objects in foreign key tables.
+	 * insert a object in table of data base. This function also adds the objects in
+	 * foreign key tables.
 	 * 
 	 * @param object object to insert
-	 * @return preparedStatement value of query result
+	 * @return value of query result
 	 * @throws SQLException
 	 */
 	public boolean insert(T object) throws SQLException {
@@ -42,11 +44,11 @@ public abstract class GenericDAO<T extends BaseModelo> {
 	}
 
 	/**
-	 * function to update an object type T in data base. This function don't modify
-	 * the tables whit foreign keys.
+	 * update an object in data base. This function don't modify the tables whit
+	 * foreign keys.
 	 * 
 	 * @param object object to update values in data base
-	 * @return preparedStatement value of query result
+	 * @return value of query result
 	 * @throws SQLException
 	 */
 	public boolean update(T object) throws SQLException {
@@ -57,11 +59,10 @@ public abstract class GenericDAO<T extends BaseModelo> {
 	}
 
 	/**
-	 * function to return an object from its associated identifier in the table of
-	 * database.
+	 * return an object from its associated identifier in the table of database.
 	 * 
 	 * @param id identifier of object in data base
-	 * @return object the object associated with its identifier
+	 * @return the object associated with its identifier
 	 * @throws SQLException
 	 */
 	public T get(Long id) throws SQLException {
@@ -77,8 +78,7 @@ public abstract class GenericDAO<T extends BaseModelo> {
 	}
 
 	/**
-	 * function to return a list of object whit all objects are presents in table of
-	 * data base.
+	 * return a list of object whit all objects are presents in table of data base.
 	 * 
 	 * @return List of objects
 	 * @throws SQLException
@@ -95,11 +95,11 @@ public abstract class GenericDAO<T extends BaseModelo> {
 	}
 
 	/**
-	 * function to delete a object in table if data base. This function remove
-	 * occurrences in foreign tables
+	 * delete a object in table if data base. This function remove occurrences in
+	 * foreign tables
 	 * 
 	 * @param object
-	 * @return
+	 * @return number or rows removed
 	 * @throws SQLException
 	 */
 	public int delete(T object) throws SQLException {

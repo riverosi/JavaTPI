@@ -2,23 +2,41 @@ package ar.com.gugler.sgc.modelo;
 
 import java.util.Date;
 
+/**
+ * Profesor Class
+ * 
+ * @author Ignacio Riveros
+ *
+ */
 public class Profesor extends Persona {
 
-	/**
-	 * Attributes
-	 */
 	private String cuil;
 	private Date fechaIngreso;
 
 	/**
-	 * Constructors
+	 * Short Constructor of Profesor
+	 * 
+	 * @param numeroDocumento
+	 * @param apellido
+	 * @param nombres
 	 */
-
 	public Profesor(String numeroDocumento, String apellido, String nombres) {
 		super(numeroDocumento, apellido, nombres);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Long Constructor of Profesor
+	 * 
+	 * @param cuil
+	 * @param numeroDocumento
+	 * @param apellido
+	 * @param nombres
+	 * @param fechaNacimiento
+	 * @param domicilio
+	 * @param telefono
+	 * @param correoElectronico
+	 * @param fechaIngreso
+	 */
 	public Profesor(String cuil, String numeroDocumento, String apellido, String nombres, Date fechaNacimiento,
 			String domicilio, String telefono, String correoElectronico, Date fechaIngreso) {
 		super(numeroDocumento, apellido, nombres, fechaNacimiento, domicilio, telefono, correoElectronico);
@@ -26,9 +44,6 @@ public class Profesor extends Persona {
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	/**
-	 * Getters and Setters
-	 */
 	public String getCuil() {
 		return cuil;
 	}
@@ -45,13 +60,8 @@ public class Profesor extends Persona {
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	/**
-	 * Methods of class
-	 */
-
 	@Override
 	public String mostrarInformacion() {
-		// TODO Auto-generated method stub
 		return "Profesor [Nombre y apellido= " + this.getNombres().toUpperCase() + " "
 				+ this.getApellido().toUpperCase() + ", Cuil: " + this.getCuil() + "]";
 	}

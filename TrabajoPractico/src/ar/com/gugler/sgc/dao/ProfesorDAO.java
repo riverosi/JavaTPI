@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ar.com.gugler.sgc.dao;
 
 import java.sql.PreparedStatement;
@@ -11,6 +8,8 @@ import java.util.Date;
 import ar.com.gugler.sgc.modelo.Profesor;
 
 /**
+ * ProfesorDAO Class used for Data Access Object Software Pattern
+ * 
  * @author Ignacio Riveros
  *
  */
